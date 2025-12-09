@@ -11,6 +11,9 @@ fi
 
 echo "Applying Kubernetes manifests..."
 
-kubectl apply --recursive -f "$(dirname "$0")" --filename-pattern='*.yaml' --filename-pattern='*.yml' --prune -l app.kubernetes.io/part-of=frontend
+# Find all .yaml and .yml files, excluding docker-compose.yml, and apply them.
+# This is a more compatible way to apply multiple files than using --filename-pattern.
+find "$(dirname "$0")" \( -name "*.yaml" -o -name "*.yml" \) -not -name "docker-compose.yml" -print0 | \
+  xargs -0 kubectl apply -f
 
 echo "Deployment complete. Use 'kubectl get service frontend-service' to find the external IP."

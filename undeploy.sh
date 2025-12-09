@@ -11,6 +11,8 @@ fi
 
 echo "Deleting Kubernetes resources..."
 
-kubectl delete --recursive -f "$(dirname "$0")" --filename-pattern='*.yaml' --filename-pattern='*.yml' --wait=true
+# Find all .yaml and .yml files, excluding docker-compose.yml, and delete them.
+find "$(dirname "$0")" \( -name "*.yaml" -o -name "*.yml" \) -not -name "docker-compose.yml" -print0 | \
+  xargs -0 kubectl delete -f --wait=true
 
 echo "All frontend resources have been deleted."
