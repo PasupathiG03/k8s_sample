@@ -11,6 +11,6 @@ fi
 
 echo "Applying Kubernetes manifests..."
 
-kubectl apply -f "$(dirname "$0")"
+kubectl apply --recursive -f "$(dirname "$0")" --filename-pattern='*.yaml' --filename-pattern='*.yml' --prune -l app.kubernetes.io/part-of=frontend
 
 echo "Deployment complete. Use 'kubectl get service frontend-service' to find the external IP."

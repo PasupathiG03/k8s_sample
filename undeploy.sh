@@ -11,6 +11,6 @@ fi
 
 echo "Deleting Kubernetes resources..."
 
-kubectl delete -f "$(dirname "$0")" --wait=true
+kubectl delete --recursive -f "$(dirname "$0")" --filename-pattern='*.yaml' --filename-pattern='*.yml' --wait=true
 
 echo "All frontend resources have been deleted."
