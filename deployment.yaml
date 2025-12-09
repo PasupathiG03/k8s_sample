@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: mahima/frontend:latest # Best Practice: Use a specific version tag
-        imagePullPolicy: IfNotPresent
+        image: mahima/frontend:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 80
         readinessProbe:
