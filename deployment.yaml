@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: mahima/frontend:latest
+        image: localhost:5000/frontend:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
