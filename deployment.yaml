@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: mahima/frontend:1.0.0 # Best Practice: Use a specific version tag
+        image: mahima/frontend:latest # Best Practice: Use a specific version tag
         ports:
         - containerPort: 80
         readinessProbe:
