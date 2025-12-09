@@ -17,6 +17,7 @@ spec:
       containers:
       - name: frontend
         image: mahima/frontend:latest # Best Practice: Use a specific version tag
+        imagePullPolicy: Never # Use local image, don't pull from registry
         ports:
         - containerPort: 80
         readinessProbe:
