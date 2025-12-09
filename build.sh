@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+# --- Configuration ---
+# Replace with your Docker Hub username or registry path
+IMAGE_OWNER="mahima"
+IMAGE_NAME="frontend"
+
+# Use the first argument passed to the script as the tag, or default to "latest"
+TAG=${1:-"latest"}
+
+FULL_IMAGE_NAME="${IMAGE_OWNER}/${IMAGE_NAME}:${TAG}"
+
+# --- Build and Push ---
+echo "Building image: ${FULL_IMAGE_NAME}"
+docker build -t "${FULL_IMAGE_NAME}" .
+
+echo "Pushing image: ${FULL_IMAGE_NAME}"
+docker push "${FULL_IMAGE_NAME}"
+
+echo "Build and push complete for ${FULL_IMAGE_NAME}"
