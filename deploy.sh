@@ -1,0 +1,1 @@
+docker-compose -p shell_frontend up -d --build

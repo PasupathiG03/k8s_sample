@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>k8s</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div id="MainLoginDiv">
+                <div class="brand-logo">
+                  <img src="../../images/logo/mpulse_logo.png" alt="logo">
+                </div>
+                <h4>Hello! let's get started</h4>
+                <h6 class="font-weight-light">Sign in to continue.</h6>
+
+              </div>
+
+              <!-- 🔹 New Password Div -->
+              <div id="ResetPasswordDiv" class="d-none">
+                <h5 class="text-center mb-3 text-primary">Reset Password</h5>
+
+                <!-- Employee ID -->
+                <div class="form-group mb-3">
+                  <label for="reset_empid">Employee ID</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="reset_empid"
+                    placeholder="Enter your Employee ID"
+                  />
+                </div>
+
+                <!-- Current Password -->
+                <div class="form-group mb-3">
+                  <label for="currentPasswordInput">Current Password</label>
+                  <input
+                    type="password"
+                    id="currentPasswordInput"
+                    class="form-control"
+                    placeholder="Enter your current password"
+                  />
+                </div>
+
+                <!-- New Password -->
+                <div class="form-group mb-3">
+                  <label for="newPasswordInput">New Password</label>
+                  <input
+                    type="password"
+                    id="newPasswordInput"
+                    class="form-control"
+                    placeholder="Enter your new password"
+                  />
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group mb-3">
+                  <label for="confirmPasswordInput">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="confirmPasswordInput"
+                    class="form-control"
+                    placeholder="Confirm your new password"
+                  />
+                </div>
+
+                <!-- Submit Button -->
+                <button class="btn btn-primary w-100 mb-2" id="resetPasswordBtn">Submit</button>
+
+                <!-- Back to Login -->
+                <a href="#" id="goToLoginFromNew" class="d-block text-center">Back to Login</a>
+              </div>
+
+            </div>
+          </div> 
+        </div> 
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+ 
+  <script src="../../vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../js/off-canvas.js"></script>
+  <script src="../../js/hoverable-collapse.js"></script>
+  <script src="../../js/template.js"></script>
+  <script src="../../js/settings.js"></script>
+  <script src="../../js/todolist.js"></script>
+  <script src="../../js/url.js"></script>
+
+  <!-- endinject -->
+</body>
+</html>

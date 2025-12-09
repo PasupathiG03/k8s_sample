@@ -1,0 +1,1 @@
+docker stop shell_frontend  && docker rm shell_frontend  && docker container prune -f && docker system prune -a -f && docker-compose -p shell_frontend down -v

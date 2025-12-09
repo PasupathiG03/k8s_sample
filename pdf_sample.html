@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All PDF Sizes Generator</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body { font-family: Arial; max-width: 480px; margin: 40px auto; padding: 20px; }
+    select, button { width: 100%; padding: 10px; margin-top: 12px; font-size: 16px; }
+    h2 { text-align:center; }
+  </style>
+</head>
+<body>
+
+<h2>PDF Generator — All Standard Sizes</h2>
+
+<label>Select Page Size</label>
+<select id="sizeSelect">
+
+  <!-- A SERIES -->
+  <optgroup label="A Series (ISO)">
+    <option value="A0">A0 — 841 × 1189 mm</option>
+    <option value="A1">A1 — 594 × 841 mm</option>
+    <option value="A2">A2 — 420 × 594 mm</option>
+    <option value="A3">A3 — 297 × 420 mm</option>
+    <option value="A4" selected>A4 — 210 × 297 mm</option>
+    <option value="A5">A5 — 148 × 210 mm</option>
+    <option value="A6">A6 — 105 × 148 mm</option>
+    <option value="A7">A7 — 74 × 105 mm</option>
+    <option value="A8">A8 — 52 × 74 mm</option>
+    <option value="A9">A9 — 37 × 52 mm</option>
+    <option value="A10">A10 — 26 × 37 mm</option>
+  </optgroup>
+
+  <!-- B SERIES -->
+  <optgroup label="B Series (ISO)">
+    <option value="B0">B0 — 1000 × 1414 mm</option>
+    <option value="B1">B1 — 707 × 1000 mm</option>
+    <option value="B2">B2 — 500 × 707 mm</option>
+    <option value="B3">B3 — 353 × 500 mm</option>
+    <option value="B4">B4 — 250 × 353 mm</option>
+    <option value="B5">B5 — 176 × 250 mm</option>
+    <option value="B6">B6 — 125 × 176 mm</option>
+    <option value="B7">B7 — 88 × 125 mm</option>
+    <option value="B8">B8 — 62 × 88 mm</option>
+    <option value="B9">B9 — 44 × 62 mm</option>
+    <option value="B10">B10 — 31 × 44 mm</option>
+  </optgroup>
+
+  <!-- C SERIES -->
+  <optgroup label="C Series (Envelopes)">
+    <option value="C0">C0 — 917 × 1297 mm</option>
+    <option value="C1">C1 — 648 × 917 mm</option>
+    <option value="C2">C2 — 458 × 648 mm</option>
+    <option value="C3">C3 — 324 × 458 mm</option>
+    <option value="C4">C4 — 229 × 324 mm</option>
+    <option value="C5">C5 — 162 × 229 mm</option>
+    <option value="C6">C6 — 114 × 162 mm</option>
+    <option value="C7">C7 — 81 × 114 mm</option>
+    <option value="C8">C8 — 57 × 81 mm</option>
+    <option value="C9">C9 — 40 × 57 mm</option>
+    <option value="C10">C10 — 28 × 40 mm</option>
+  </optgroup>
+
+  <!-- US Sizes -->
+  <optgroup label="US Paper Sizes (inches)">
+    <option value="LETTER">Letter — 8.5 × 11 in</option>
+    <option value="LEGAL">Legal — 8.5 × 14 in</option>
+    <option value="TABLOID">Tabloid — 11 × 17 in</option>
+    <option value="EXECUTIVE">Executive — 7.25 × 10.5 in</option>
+    <option value="HALF_LETTER">Half Letter — 5.5 × 8.5 in</option>
+    <option value="STATEMENT">Statement — 5.5 × 8.5 in</option>
+    <option value="LEDGER">Ledger — 17 × 11 in</option>
+  </optgroup>
+
+  <!-- Posters -->
+  <optgroup label="Posters (inches)">
+    <option value="P24x36">Poster — 24 × 36 in</option>
+    <option value="P18x24">Poster — 18 × 24 in</option>
+    <option value="P11x17">Poster — 11 × 17 in</option>
+  </optgroup>
+
+  <!-- Business Cards -->
+  <optgroup label="Business Cards">
+    <option value="BC_EU">EU Business Card — 85 × 55 mm</option>
+    <option value="BC_US">US Business Card — 3.5 × 2 in</option>
+  </optgroup>
+
+</select>
+
+<label>Orientation</label>
+<select id="orientation">
+  <option value="portrait" selected>Portrait</option>
+  <option value="landscape">Landscape</option>
+</select>
+
+<button id="downloadBtn">Download PDF</button>
+
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script>
+  const { jsPDF } = window.jspdf;
+
+  // Size mapping
+  const sizes = {
+    // A-Series (mm)
+    A0:[841,1189],A1:[594,841],A2:[420,594],A3:[297,420],A4:[210,297],
+    A5:[148,210],A6:[105,148],A7:[74,105],A8:[52,74],A9:[37,52],A10:[26,37],
+
+    // B-Series (mm)
+    B0:[1000,1414],B1:[707,1000],B2:[500,707],B3:[353,500],B4:[250,353],
+    B5:[176,250],B6:[125,176],B7:[88,125],B8:[62,88],B9:[44,62],B10:[31,44],
+
+    // C-Series (mm)
+    C0:[917,1297],C1:[648,917],C2:[458,648],C3:[324,458],C4:[229,324],
+    C5:[162,229],C6:[114,162],C7:[81,114],C8:[57,81],C9:[40,57],C10:[28,40],
+
+    // US Sizes (inches)
+    LETTER:[8.5,11,"in"],LEGAL:[8.5,14,"in"],TABLOID:[11,17,"in"],
+    EXECUTIVE:[7.25,10.5,"in"],HALF_LETTER:[5.5,8.5,"in"],
+    STATEMENT:[5.5,8.5,"in"],LEDGER:[17,11,"in"],
+
+    // Posters (inches)
+    P24x36:[24,36,"in"],P18x24:[18,24,"in"],P11x17:[11,17,"in"],
+
+    // Business Cards
+    BC_EU:[85,55],                     // mm
+    BC_US:[3.5,2,"in"]                 // inches
+  };
+
+  function inchesToMm(inches){ return inches * 25.4; }
+
+  document.getElementById("downloadBtn").onclick = () => {
+    const key = document.getElementById("sizeSelect").value;
+    const orientation = document.getElementById("orientation").value;
+
+    let [w, h, unit] = sizes[key];
+    if (unit === "in") { w = inchesToMm(w); h = inchesToMm(h); }
+
+    const doc = new jsPDF({ unit:"mm", format:[w,h], orientation });
+
+    doc.text(`${key} — ${Math.round(w)}mm × ${Math.round(h)}mm`, 10, 20);
+
+    doc.save(`${key}_${orientation}.pdf`);
+  };
+</script>
+
+</body>
+</html>
