@@ -23,8 +23,16 @@ docker build -t "${FULL_IMAGE_NAME}" .
 echo ""
 echo "Build complete for ${FULL_IMAGE_NAME}"
 echo ""
-echo "Image is ready locally."
-echo ""
-echo "To use this image with Kubernetes:"
-echo "1. If using local cluster (minikube/kind): Image is ready to use"
-echo "2. If using remote cluster (EKS/GKE): Run 'docker push ${FULL_IMAGE_NAME}' after 'docker login'"
+
+# --- Push to Docker Hub ---
+echo "Pushing image to Docker Hub..."
+if docker push "${FULL_IMAGE_NAME}"; then
+    echo "Push successful!"
+    echo "Image is now available at: ${FULL_IMAGE_NAME}"
+else
+    echo "Push failed. Make sure you:"
+    echo "1. Have a Docker Hub account"
+    echo "2. Ran 'docker login' with correct credentials"
+    echo "3. Have push permissions for '${IMAGE_OWNER}'"
+    exit 1
+fi
