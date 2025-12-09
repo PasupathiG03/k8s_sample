@@ -3,6 +3,12 @@
 # Exit immediately if a command exits with a non-zero status.
 set -e
 
+# Check if docker is installed
+if ! command -v docker &> /dev/null; then
+    echo "docker could not be found. Please install it to continue."
+    exit 1
+fi
+
 # --- Configuration ---
 # Replace with your Docker Hub username or registry path
 IMAGE_OWNER="mahima"
