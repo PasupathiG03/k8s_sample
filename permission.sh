@@ -1,1 +1,1 @@
-chmod +x build.sh deploy.sh undeploy.sh status.sh remove_old.sh log.sh browse_files.sh run.sh
+chmod +x build.sh deploy.sh undeploy.sh status.sh remove_old.sh log.sh browse_files.sh
