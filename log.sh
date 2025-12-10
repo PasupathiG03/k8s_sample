@@ -1,1 +1,1 @@
-docker logs -f shell_frontend
+kubectl logs -f -l app=frontend

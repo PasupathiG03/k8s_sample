@@ -2,96 +2,168 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>k8s</title>
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Info Dashboard</title>
+  <style>
+    /* General Reset and Font */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7f9;
+      /* Light gray background */
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
+    /* Container for the whole dashboard */
+    .dashboard-container {
+      width: 90%;
+      max-width: 1200px;
+      padding: 20px;
+    }
+
+    /* Header Styling */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      color: #1e88e5;
+      /* Primary Blue */
+      font-weight: 300;
+      /* Light weight for modern feel */
+      margin-bottom: 5px;
+    }
+
+    .header p {
+      color: #777;
+    }
+
+    /* Grid Layout for Cards */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    /* Card Styling */
+    .info-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      /* Rounded corners */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      /* Subtle shadow */
+      padding: 25px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      /* Slight lift on hover */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Card Content */
+    .card-icon {
+      font-size: 30px;
+      margin-bottom: 15px;
+      color: #1e88e5;
+      /* Primary Blue for icon */
+    }
+
+    .card-title {
+      font-size: 1.2em;
+      font-weight: 600;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 5px;
+    }
+
+    .card-value {
+      font-size: 2em;
+      font-weight: 700;
+      color: #4CAF50;
+      /* Green highlight for value */
+    }
+
+    .card-detail {
+      margin-top: 15px;
+      font-size: 0.9em;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    /* Specific Color Overrides (for visual variety) */
+    .card-1 .card-icon,
+    .card-1 .card-value {
+      color: #f44336;
+    }
+
+    /* Red */
+    .card-2 .card-icon,
+    .card-2 .card-value {
+      color: #FFC107;
+    }
+
+    /* Amber */
+    .card-3 .card-icon,
+    .card-3 .card-value {
+      color: #03A9F4;
+    }
+
+    /* Light Blue */
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
-  <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0">
-        <div class="row w-100 mx-0">
-          <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <div id="MainLoginDiv">
-                <div class="brand-logo">
-                  <img src="images/logo/mpulse_logo.png" alt="logo">
-                </div>
-                <h4>Hello! let's get started</h4>
-                <h6 class="font-weight-light">Sign in to continue.</h6>
 
-              </div>
+  <div class="dashboard-container">
+    <header class="header">
+      <h1>Project Overview</h1>
+      <p>A quick glance at the current status and key metrics.</p>
+    </header>
 
-              <!-- 🔹 New Password Div -->
-              <div id="ResetPasswordDiv" class="d-none">
-                <h5 class="text-center mb-3 text-primary">Reset Password</h5>
+    <main class="info-grid">
 
-                <!-- Employee ID -->
-                <div class="form-group mb-3">
-                  <label for="reset_empid">Employee ID</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    id="reset_empid"
-                    placeholder="Enter your Employee ID"
-                  />
-                </div>
-
-                <!-- Current Password -->
-                <div class="form-group mb-3">
-                  <label for="currentPasswordInput">Current Password</label>
-                  <input
-                    type="password"
-                    id="currentPasswordInput"
-                    class="form-control"
-                    placeholder="Enter your current password"
-                  />
-                </div>
-
-                <!-- New Password -->
-                <div class="form-group mb-3">
-                  <label for="newPasswordInput">New Password</label>
-                  <input
-                    type="password"
-                    id="newPasswordInput"
-                    class="form-control"
-                    placeholder="Enter your new password"
-                  />
-                </div>
-
-                <!-- Confirm Password -->
-                <div class="form-group mb-3">
-                  <label for="confirmPasswordInput">Confirm Password</label>
-                  <input
-                    type="password"
-                    id="confirmPasswordInput"
-                    class="form-control"
-                    placeholder="Confirm your new password"
-                  />
-                </div>
-
-                <!-- Submit Button -->
-                <button class="btn btn-primary w-100 mb-2" id="resetPasswordBtn">Submit</button>
-
-                <!-- Back to Login -->
-                <a href="#" id="goToLoginFromNew" class="d-block text-center">Back to Login</a>
-              </div>
-
-            </div>
-          </div> 
-        </div> 
+      <div class="info-card card-1">
+        <div class="card-icon"><i class="fas fa-users"></i></div>
+        <div class="card-title">Total Users</div>
+        <div class="card-value">2,450</div>
+        <p class="card-detail">Registered users as of today. (+15% from last month).</p>
       </div>
-      <!-- content-wrapper ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
+
+      <div class="info-card card-2">
+        <div class="card-icon"><i class="fas fa-tasks"></i></div>
+        <div class="card-title">Pending Tasks</div>
+        <div class="card-value">34</div>
+        <p class="card-detail">Critical tasks awaiting assignment or completion.</p>
+      </div>
+
+      <div class="info-card card-3">
+        <div class="card-icon"><i class="fas fa-info-circle"></i></div>
+        <div class="card-title">System Status</div>
+        <div class="card-value">Operational</div>
+        <p class="card-detail">All core services are running smoothly with no reported downtime in the last 24 hours.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <div class="card-icon"><i class="fas fa-project-diagram"></i></div>
+        <div class="card-title">Next Milestone</div>
+        <div class="card-value" style="color: #673AB7;">Feature X Launch</div>
+        <p class="card-detail">Target Date: **December 20, 2025**. Focus is on final testing and documentation.</p>
+      </div>
+
+    </main>
   </div>
- 
 
 </body>
+
 </html>
